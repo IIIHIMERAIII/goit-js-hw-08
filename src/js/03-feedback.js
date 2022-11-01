@@ -19,20 +19,18 @@ function setData(e) {
 
 function submitData(e) {
     e.preventDefault();
-    const data = ({ email: formEmail.value, message: formMessage.value });
-
     for (let element of e.currentTarget.elements) {
         if (element.name && !element.value)
             return alert("Please complete form")
     }
-    console.log(data);
+    console.log({ email: formEmail.value, message: formMessage.value });
     localStorage.removeItem(STORAGE_KEY);
     formRef.reset();
 }
 
 function autocomplete() {
     const data = getData();
-    if (localStorage.length > 0) {
+    if (localStorage.hasOwnProperty("feedback-form-state")) {
         formEmail.value = data.email;
         formMessage.value = data.message;
     }
